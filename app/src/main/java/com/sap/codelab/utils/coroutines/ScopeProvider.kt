@@ -1,6 +1,11 @@
 package com.sap.codelab.utils.coroutines
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlin.coroutines.EmptyCoroutineContext
 
 /**
@@ -22,6 +27,19 @@ internal object ScopeProvider {
      */
     fun newScope(dispatcher: CoroutineDispatcher = Dispatchers.Main): CoroutineScope {
         return CoroutineScope(dispatcher)
+    }
+
+    /**
+     * Creates a new coroutine scope with a [SupervisorJob].
+     *
+     * This type of scope is useful when you have a group of coroutines where the failure of one
+     * should not cause the others to be cancelled.
+     *
+     * @param dispatcher The dispatcher used to run the coroutines. Defaults to [Dispatchers.Main].
+     * @return A new [CoroutineScope] with a [SupervisorJob].
+     */
+    fun supervisorScope(dispatcher: CoroutineDispatcher = Dispatchers.Main): CoroutineScope {
+        return CoroutineScope(dispatcher + SupervisorJob())
     }
 
     /**

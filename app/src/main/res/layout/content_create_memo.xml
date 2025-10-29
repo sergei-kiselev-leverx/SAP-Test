@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/padding_activity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.sap.codelab.view.create.CreateMemo"
+    tools:context="com.sap.codelab.view.create.CreateMemoActivity"
     tools:showIn="@layout/activity_create_memo">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -39,5 +39,36 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/memo_location_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@id/memo_description_container">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/memo_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/location"
+            android:importantForAutofill="noExcludeDescendants"
+            android:inputType="none"
+            android:longClickable="false"
+            android:textIsSelectable="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/memo_location_see_on_map_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorAccent"
+        android:text="@string/see_location_on_map"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/memo_location_container" />
 </androidx.constraintlayout.widget.ConstraintLayout>

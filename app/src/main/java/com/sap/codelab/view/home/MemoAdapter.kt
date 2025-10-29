@@ -1,20 +1,21 @@
 package com.sap.codelab.view.home
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import com.sap.codelab.databinding.RecyclerviewMemoBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.sap.codelab.databinding.ItemMemoBinding
 import com.sap.codelab.model.Memo
-import kotlin.math.max
 
 /**
  * Adapter containing a set of memos.
  */
-internal class MemoAdapter(private val items: MutableList<Memo>,
-                           private val onClick: View.OnClickListener,
-                           private val onCheckboxChanged: CompoundButton.OnCheckedChangeListener) : RecyclerView.Adapter<MemoViewHolder>() {
+internal class MemoAdapter(
+    private val items: MutableList<Memo>,
+    private val onClick: View.OnClickListener,
+    private val onCheckboxChanged: CompoundButton.OnCheckedChangeListener
+) : RecyclerView.Adapter<MemoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewTypee: Int): MemoViewHolder {
         return MemoViewHolder(newItemViewBinding(parent))
@@ -31,10 +32,9 @@ internal class MemoAdapter(private val items: MutableList<Memo>,
      * Updates the current list of items to the given list of items.
      */
     fun setItems(newItems: List<Memo>) {
-        val count = itemCount
         items.clear()
         items.addAll(newItems)
-        notifyItemRangeChanged(0, max(count, itemCount))
+        notifyDataSetChanged()
     }
 
     /**
@@ -43,7 +43,7 @@ internal class MemoAdapter(private val items: MutableList<Memo>,
      * @param parent    - the parent view group of the item.
      * @return the view binding.
      */
-    private fun newItemViewBinding(parent: ViewGroup): RecyclerviewMemoBinding {
-        return RecyclerviewMemoBinding.inflate(LayoutInflater.from(parent.context))
+    private fun newItemViewBinding(parent: ViewGroup): ItemMemoBinding {
+        return ItemMemoBinding.inflate(LayoutInflater.from(parent.context))
     }
 }

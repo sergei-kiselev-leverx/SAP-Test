@@ -4,8 +4,29 @@
     <string name="action_show_open">Show Open</string>
     <string name="memo_title">Title</string>
     <string name="new_memo">New Memo</string>
+    <string name="choose_location_title">Memo location</string>
     <string name="memo_text">Text</string>
     <string name="action_save">Save</string>
     <string name="memo_title_empty_error">Please provide a title for this memo</string>
     <string name="memo_text_empty_error">Please provide a memo description</string>
+    <string name="memo_location_empty_error">Please provide a memo location</string>
+
+    <string name="see_location_on_map">See location on map</string>
+    <string name="location">Location</string>
+    <string name="save_coordinates">Save</string>
+    <string name="location_notification_channel">Location service</string>
+    <string name="memo_location_notification_channel">Memos nearby</string>
+    <string name="location_notification_title">Location Service</string>
+    <string name="location_notification_text">Looking for your memos nearby</string>
+    <string name="location_data">%f %f</string>
+
+    <string name="permission_dialog_title">Location access required</string>
+    <string name="permission_dialog_message">
+        To enable location-based reminders and background services,
+        please grant access to your device location (both precise and approximate).
+        Notification permission may also be required.
+    </string>
+    <string name="permission_dialog_exit">Exit</string>
+    <string name="permission_dialog_grant">Grant</string>
+    <string name="permission_dialog_cancel">Cancel</string>
 </resources>

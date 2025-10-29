@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sap.codelab">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name=".repository.App"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="osmdroid.userAgent"
+            android:value="${applicationId}" />
+
         <activity
-            android:name="com.sap.codelab.view.home.Home"
+            android:name="com.sap.codelab.view.home.HomeActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,14 +33,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sap.codelab.view.create.CreateMemo"
+            android:name="com.sap.codelab.view.create.CreateMemoActivity"
             android:exported="false"
             android:label="@string/new_memo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.sap.codelab.view.detail.ViewMemo"
+            android:name=".view.location.ChooseLocationActivity"
             android:exported="false"
+            android:label="@string/choose_location_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.sap.codelab.view.detail.ViewMemoActivity"
+            android:exported="true"
+            android:parentActivityName=".view.home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="com.sap.codelab"
+                    android:path="/detail"
+                    android:scheme="codelab" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.LocationService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <receiver
+            android:name=".service.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
